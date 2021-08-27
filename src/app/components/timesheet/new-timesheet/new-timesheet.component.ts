@@ -15,7 +15,6 @@ export class NewTimesheetComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    console.log(form.value.date);
-    // this.timesheetService.timesheets.push(form.value);
+    console.log(form);
   }
 }

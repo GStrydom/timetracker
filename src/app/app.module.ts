@@ -34,6 +34,11 @@ import { MatInputModule } from '@angular/material/input';
 
 import { TimesheetService } from './components/timesheet/timesheet.service';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
+
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +69,9 @@ import { TimesheetService } from './components/timesheet/timesheet.service';
     MatCardModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [AuthService, TimesheetService],
   bootstrap: [AppComponent]
