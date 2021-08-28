@@ -34,8 +34,10 @@ import { MatInputModule } from '@angular/material/input';
 
 import { TimesheetService } from './components/timesheet/timesheet.service';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 
