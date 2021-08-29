@@ -1,5 +1,5 @@
 <section fxFlex fxLayout="column" fxLayoutAlign="center center">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" fxFlex fxLayout="column">
     <mat-form-field>
       <label>Email</label>
       <input matInput ngModel type="text" name="email">
@@ -10,7 +10,7 @@
       <input matInput ngModel type="text" name="password">
     </mat-form-field>
 
-    <button type="submit">Login</button>
+    <button *ngIf="!isLoading" [disabled]="f.invalid" color="primary" mat-button type="submit">Login</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
 </section>
-

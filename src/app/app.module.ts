@@ -20,13 +20,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { TimesheetItemComponent } from './components/timesheet/timesheet-item/timesheet-item.component';
-import { ButtonbarComponent } from './components/buttonbar/buttonbar.component';
+import { ButtonbarComponent } from './components/shared/ui/buttonbar/buttonbar.component';
 import { SidenavListComponent } from './components/shared/ui/sidenav-list/sidenav-list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NewTimesheetComponent } from './components/timesheet/new-timesheet/new-timesheet.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 
 import { AuthService } from './components/auth/auth.service';
@@ -34,12 +34,20 @@ import { MatInputModule } from '@angular/material/input';
 
 import { TimesheetService } from './components/timesheet/timesheet.service';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { environment } from '../environments/environment';
+import { TimesheetActionsComponent } from './components/timesheet/timesheet-actions/timesheet-actions.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+import { UIService } from './components/shared/ui/ui.service';
+import { MondayComponent } from './components/weekdays/monday/monday.component';
+import { TuesdayComponent } from './components/weekdays/tuesday/tuesday.component';
+import { WednesdayComponent } from './components/weekdays/wednesday/wednesday.component';
+import { ThursdayComponent } from './components/weekdays/thursday/thursday.component';
+import { FridayComponent } from './components/weekdays/friday/friday.component';
 
 @NgModule({
   declarations: [
@@ -50,32 +58,40 @@ import { environment } from '../environments/environment';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    TimesheetItemComponent,
     ButtonbarComponent,
     SidenavListComponent,
-    NewTimesheetComponent
+    NewTimesheetComponent,
+    TimesheetActionsComponent,
+    MondayComponent,
+    TuesdayComponent,
+    WednesdayComponent,
+    ThursdayComponent,
+    FridayComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    RouterModule,
-    AppRoutingModule,
-    MatTableModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatTabsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
-  ],
-  providers: [AuthService, TimesheetService],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        RouterModule,
+        AppRoutingModule,
+        MatTableModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatTabsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule
+    ],
+  providers: [AuthService, TimesheetService, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

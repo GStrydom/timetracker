@@ -1,18 +1,29 @@
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-  <mat-form-field>
-    <label>Username</label>
-    <input matInput ngModel type="text" name="username">
-  </mat-form-field>
+<section fxFlex fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-subtitle>Create an account by filling in the following details</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput ngModel type="text" name="displayName">
+        </mat-form-field>
 
-  <mat-form-field>
-    <label>Email</label>
-    <input matInput ngModel type="text" name="email">
-  </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput ngModel type="email" name="email">
+        </mat-form-field>
 
-  <mat-form-field>
-    <label>Password</label>
-    <input matInput ngModel type="text" name="password">
-  </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput ngModel type="password" name="password">
+        </mat-form-field>
 
-  <button type="submit">Register</button>
-</form>
+        <button type="submit" mat-button color="primary" [disabled]="f.invalid">Register</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
+

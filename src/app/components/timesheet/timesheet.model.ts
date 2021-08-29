@@ -1,5 +1,4 @@
 export interface Timesheet {
-  id: string;
   date: string;
   startTime: string;
   taskDescription: string;
