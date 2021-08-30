@@ -1,27 +1,24 @@
 import { Timesheet } from './timesheet.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { TransferService } from '../shared/transfer.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable()
 export class TimesheetService {
   finishedTimesheets: Timesheet[];
+  userID: any;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private transferService: TransferService, private auth: AngularFireAuth) {
   }
 
   addTimesheetToFirestore(timesheet: {}): any {
     this.db.collection('finishedTimesheets').add(timesheet).then();
   }
 
-  getMondayTimesheets(): any{
-    return this.db.collection('finishedTimesheets', ref => ref.where('day', '>=', 'Monday')
-      .where('day', '<=', 'Monday' + '\uf8ff'))
+  getUserTimesheets(): any{
+    const userEmail = localStorage.getItem('userEmail');
+    return this.db.collection('finishedTimesheets', ref => ref.where('userID', '<=', userEmail))
       .valueChanges();
-  }
-
-  getTuesdayTimesheets(): any{
-    return this.db.collection('finishedTimesheets', ref => ref.where('day', '>=', 'tuesday')
-      .where('day', '<=', 'tuesday' + '\uf8ff'))
-      .snapshotChanges();
   }
 }
