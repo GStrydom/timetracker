@@ -8,11 +8,10 @@
   <div fxFlex></div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="nav-items">
-      <li *ngIf="isAuth"><a class="newtimebut" routerLink="new-timesheet">New</a></li>
       <li *ngIf="!isAuth"><a routerLink="register">Register</a></li>
       <li *ngIf="!isAuth"><a routerLink="login">Login</a></li>
       <li *ngIf="isAuth"><a routerLink="home">Home</a></li>
-      <li *ngIf="isAuth"><a routerLink="user">Username</a></li>
+      <li *ngIf="isAuth"><a routerLink="user">{{ userDisplayName }}</a></li>
       <li *ngIf="isAuth"><a (click)="onLogout()" routerLink="logout">Logout</a></li>
     </ul>
   </div>
