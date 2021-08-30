@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Output() sideNavToggle = new EventEmitter<void>();
   isAuth: boolean;
   authSubscription: Subscription;
+  userDisplayName: string = localStorage.getItem('userName');
 
   constructor(private authService: AuthService) { }
 
@@ -20,15 +21,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): any {
     this.authSubscription.unsubscribe();
   }
 
-  onSidenav(): void {
+  onSidenav(): any {
     this.sideNavToggle.emit();
   }
 
-  onLogout() {
+  onLogout(): any {
     this.authService.logout();
   }
 
