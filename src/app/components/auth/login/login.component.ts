@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit(form: NgForm): void {
     this.authService.login({
       email: form.value.email,
-      password: form.value.password
+      password: form.value.password,
+      displayName: ''
     });
   }
 }
