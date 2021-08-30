@@ -5,4 +5,5 @@ export interface Timesheet {
   endTime: string;
   day: string;
   hoursWorked: number;
+  userID: string;
 }
