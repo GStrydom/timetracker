@@ -50,6 +50,12 @@ import { WednesdayComponent } from './components/weekdays/wednesday/wednesday.co
 import { ThursdayComponent } from './components/weekdays/thursday/thursday.component';
 import { FridayComponent } from './components/weekdays/friday/friday.component';
 import {MatSelectModule} from '@angular/material/select';
+import { FullweekComponent } from './components/weekdays/fullweek/fullweek.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { EditTimesheetComponent } from './components/timesheet/edit-timesheet/edit-timesheet.component';
+import { DeleteTimesheetComponent } from './components/timesheet/delete-timesheet/delete-timesheet.component';
+import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -68,32 +74,38 @@ import {MatSelectModule} from '@angular/material/select';
     TuesdayComponent,
     WednesdayComponent,
     ThursdayComponent,
-    FridayComponent
+    FridayComponent,
+    FullweekComponent,
+    EditTimesheetComponent,
+    DeleteTimesheetComponent,
+    CreateTimesheetComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    RouterModule,
-    AppRoutingModule,
-    MatTableModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatTabsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        RouterModule,
+        AppRoutingModule,
+        MatTableModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatTabsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule,
+        MatSelectModule,
+        MatTooltipModule,
+        MatSortModule
+    ],
   providers: [AuthService, TimesheetService, UIService, TransferService],
   bootstrap: [AppComponent]
 })

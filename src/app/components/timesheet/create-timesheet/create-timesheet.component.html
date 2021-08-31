@@ -1,0 +1,23 @@
+<section fxFlex fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create TimeSheet</mat-card-title>
+      <mat-card-subtitle>Create a new weekly Timesheet</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm" fxFlex fxLayout="column">
+        <mat-form-field>
+          <mat-label>Week Start</mat-label>
+          <input matInput placeholder="Enter the starting day of the week" type="text" ngModel name="startDate" id="startDate">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Week End</mat-label>
+          <input matInput placeholder="Enter the ending day of the week" type="text" ngModel name="endDate" id="endDate">
+        </mat-form-field>
+
+        <button type="submit" mat-button color="primary" [disabled]="f.invalid">Create</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

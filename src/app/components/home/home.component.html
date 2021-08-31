@@ -9,11 +9,21 @@
   </mat-tab>
   <mat-tab label="Wednesday">
     <app-buttonbar></app-buttonbar>
+    <app-wednesday></app-wednesday>
   </mat-tab>
   <mat-tab label="Thursday">
     <app-buttonbar></app-buttonbar>
+    <app-thursday></app-thursday>
   </mat-tab>
   <mat-tab label="Friday">
     <app-buttonbar></app-buttonbar>
+    <app-friday></app-friday>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">description</mat-icon>
+      Week's Timesheet
+    </ng-template>
+    <app-fullweek></app-fullweek>
   </mat-tab>
 </mat-tab-group>

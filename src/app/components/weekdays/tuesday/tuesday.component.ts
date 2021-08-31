@@ -11,7 +11,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./tuesday.component.css']
 })
 export class TuesdayComponent implements OnInit {
-  mainColumns = ['date', 'startTime', 'taskDescription', 'endTime', 'hoursWorked'];
+  mainColumns = ['date', 'startTime', 'taskDescription', 'endTime', 'hoursWorked', 'edit', 'delete'];
   totalColumns = ['totalHours', 'amount'];
   mainDatasource: MatTableDataSource<Timesheet>;
   totalDatasource: MatTableDataSource<Totals>;
@@ -40,5 +40,13 @@ export class TuesdayComponent implements OnInit {
 
     /* save to file */
     XLSX.writeFile(wb, 'Timesheet.xlsx');
+  }
+
+  editRecord(element): any {
+    console.log(element);
+  }
+
+  deleteRecord(element): any {
+    console.log(element);
   }
 }
