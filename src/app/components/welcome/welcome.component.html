@@ -1,0 +1,23 @@
+<section>
+  <h2>Please open an existing timesheet or create a new one to get started...</h2>
+</section>
+
+<section>
+  <mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card fxFlex fxLayoutAlign="center center">
+        <mat-card-content>
+          <a routerLink="/create-timesheet" matTooltip="Create a new timesheet"><mat-icon>add</mat-icon></a>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let timesheetName of timesheetNames">
+      <mat-card fxFlex fxLayoutAlign="center center">
+        <mat-card-content>
+          <a (click)="openTimeSheet('{{ timesheetName }}')" class="welcomeBox" matTooltip="OPEN">{{ timesheetName }}</a>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>
+
