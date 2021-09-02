@@ -38,6 +38,5 @@ export class NewTimesheetComponent implements OnInit {
       hoursWorked: form.value.hours
     };
     console.log(this.formObj);
-    this.timesheetService.addTimesheetToFirestore(this.formObj);
   }
 }
