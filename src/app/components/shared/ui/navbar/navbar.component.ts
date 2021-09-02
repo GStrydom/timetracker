@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output, OnInit, OnDestroy} from '@angular/core';
 import { AuthService } from '../../../auth/auth.service';
 import { Subscription } from 'rxjs';
+import {TransferService} from '../../transfer.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
   userDisplayName: string = localStorage.getItem('userName');
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private transferService: TransferService) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
