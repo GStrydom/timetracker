@@ -14,6 +14,21 @@ export class AuthService {
 
   constructor(private router: Router, private auth: AngularFireAuth, public snackBar: MatSnackBar, private uiService: UIService, private transferService: TransferService) {}
 
+  async initAuthListener(): Promise<any> {
+     this.auth.authState.subscribe(user => {
+       if (user) {
+         this.isAuthenticated = true;
+         this.authChange.next(true);
+         this.router.navigate(['/welcome']).then();
+       } else {
+         this.snackBar.open('You have been logged out. See you later!', null, {duration: 3000});
+         this.isAuthenticated = false;
+         this.authChange.next(false);
+         this.router.navigate(['/login']).then();
+       }
+     });
+  }
+
   registerUser(authData: AuthData): any {
     this.uiService.loadingStateChanged.next(true);
     this.auth.createUserWithEmailAndPassword(authData.email, authData.password)
@@ -37,11 +52,9 @@ export class AuthService {
       .then(result => {
         this.uiService.loadingStateChanged.next(false);
         this.snackBar.open('Login success! Welcome back :)', null, {duration: 3000});
-        this.isAuthenticated = true;
         localStorage.setItem('userName', result.user.displayName);
         localStorage.setItem('userEmail', authData.email);
-        this.authChange.next(true);
-        this.router.navigate(['/home']).then();
+        this.router.navigate(['/welcome']).then();
     }).catch(error => {
       this.uiService.loadingStateChanged.next(false);
       console.log(error.message);
@@ -51,10 +64,6 @@ export class AuthService {
 
   logout(): any {
     this.auth.signOut().then();
-    this.snackBar.open('You have been logged out. See you later!', null, {duration: 3000});
-    this.isAuthenticated = false;
-    this.authChange.next(false);
-    this.router.navigate(['/login']).then();
   }
 
   isAuth(): any {
