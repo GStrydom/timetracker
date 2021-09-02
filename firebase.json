@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/timetracker",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
