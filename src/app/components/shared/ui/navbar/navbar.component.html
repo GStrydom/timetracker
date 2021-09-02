@@ -19,6 +19,11 @@
         </a>
       </li>
       <li *ngIf="isAuth">
+        <a routerLink="welcome">
+          <mat-icon class="full-links" matTooltip="Open an existing timesheet">folder</mat-icon>
+        </a>
+      </li>
+      <li *ngIf="isAuth">
         <a routerLink="home">
           <mat-icon class="full-links" matTooltip="Home">home</mat-icon>
         </a>
