@@ -12,13 +12,21 @@ export class TimesheetService {
   constructor(private db: AngularFirestore, private transferService: TransferService, private auth: AngularFireAuth) {
   }
 
-  addTimesheetToFirestore(timesheet: {}): any {
-    this.db.collection('finishedTimesheets').add(timesheet).then();
+  addTimesheetToFirestore(timesheetData): any {
+    this.db.collection('collectionList').add(timesheetData).then();
   }
 
   getUserTimesheets(): any{
     const userEmail = localStorage.getItem('userEmail');
     return this.db.collection('finishedTimesheets', ref => ref.where('userID', '<=', userEmail))
-      .valueChanges();
+      .valueChanges({idField: 'id'});
+  }
+
+  getCollectionList(): any {
+    return this.db.collection('collectionList').valueChanges();
+  }
+
+  getActiveTimesheet(timesheetName): any {
+    return this.db.collection(timesheetName).valueChanges();
   }
 }
