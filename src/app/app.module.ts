@@ -56,6 +56,9 @@ import { EditTimesheetComponent } from './components/timesheet/edit-timesheet/ed
 import { DeleteTimesheetComponent } from './components/timesheet/delete-timesheet/delete-timesheet.component';
 import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
 import {MatSortModule} from '@angular/material/sort';
+import { RecordComponent } from './components/record/record.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,9 @@ import {MatSortModule} from '@angular/material/sort';
     FullweekComponent,
     EditTimesheetComponent,
     DeleteTimesheetComponent,
-    CreateTimesheetComponent
+    CreateTimesheetComponent,
+    RecordComponent,
+    WelcomeComponent
   ],
     imports: [
         BrowserModule,
@@ -104,7 +109,8 @@ import {MatSortModule} from '@angular/material/sort';
         MatProgressSpinnerModule,
         MatSelectModule,
         MatTooltipModule,
-        MatSortModule
+        MatSortModule,
+        MatGridListModule
     ],
   providers: [AuthService, TimesheetService, UIService, TransferService],
   bootstrap: [AppComponent]
