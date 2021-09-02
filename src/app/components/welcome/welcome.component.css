@@ -1,0 +1,24 @@
+mat-icon {
+  transform: scale(5);
+  color: green;
+}
+
+mat-card {
+  max-width: 120px;
+  min-height: 120px;
+  max-height: 120px;
+  border: 1px solid black;
+}
+
+mat-card:hover {
+  cursor: pointer;
+}
+
+h2 {
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+.welcomeBox {
+  cursor: pointer;
+}
