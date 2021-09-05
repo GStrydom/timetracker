@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TimesheetService } from '../timesheet.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-timesheet',
@@ -9,59 +10,49 @@ import { TimesheetService } from '../timesheet.service';
   styleUrls: ['./create-timesheet.component.css']
 })
 export class CreateTimesheetComponent implements OnInit {
-  docList: Array<any> = [];
-  numList1: Array<any> = [];
-  numList2: Array<any> = [];
-  currentUser: string;
-  biggestNum: number;
-  timesheetData: {};
+  items = [];
+  currentUser = '';
+  biggestNum = 0;
+  timesheetData = {};
 
-  constructor(private db: AngularFirestore, private timesheetService: TimesheetService) { }
+  constructor(private db: AngularFirestore, private timesheetService: TimesheetService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  splitStr(str): any {
-    return str.split('_')[1];
-  }
-
   onSubmit(form: NgForm): any {
-    this.timesheetService.getCollectionList().subscribe(result => {
-      for (let x = 0; x < result.length; x++) {
-        // @ts-ignore
-        // tslint:disable-next-line:radix
-        const temp = parseInt(this.splitStr(result[x].timesheetID));
-        this.numList1.push(temp);
-        // @ts-ignore
-        if (result[x].userID === this.currentUser) {
-          // @ts-ignore
-          this.docList.push(result[x].timesheetID);
-        }
-      }
-      for (const y of this.docList) {
-        // tslint:disable-next-line:radix
-        const temp = parseInt(this.splitStr(this.docList[y].timesheetID));
-        this.numList2.push(temp);
-      }
-      const largest = 0;
-      for (let i = 0; i <= this.numList1.length; i++){
-        if (this.numList1[i] > largest) {
-          this.biggestNum = this.numList1[i];
-        }
-      }
-      this.biggestNum += 1;
-      this.timesheetData = {
-        timesheetID: 'timesheet_' + this.biggestNum.toString(),
-        userID: localStorage.getItem('userEmail'),
-        dateCreated: '01/09/21',
-        name: form.value.startDate + ' - ' + form.value.endDate
-      };
-      if (this.checkTimeSheetExists(this.timesheetData)) {
-        alert('A time sheet with this name already exists. Please open that timesheet, or create a new one.');
-      } else {
-        this.timesheetService.addTimesheetToFirestore(this.timesheetData);
-      }
-    });
+     this.timesheetService.getCollectionList().subscribe(result => {
+       result.docs.forEach((doc) => {
+         this.items.push(doc.data());
+       });
+     });
+
+     const temper = this.db.collection('collectionList').get();
+     temper.toPromise().then((querySnapshot) => {
+       this.biggestNum = querySnapshot.size;
+     });
+
+     this.biggestNum += 1;
+     const today = new Date();
+     const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+     const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+     const dateTime = date + ' ' + time;
+
+     this.timesheetData = {
+       timesheetID: 'timesheet_' + this.biggestNum.toString(),
+       userID: localStorage.getItem('userEmail'),
+       dateCreated: dateTime,
+       name: form.value.tname
+     };
+
+     if (this.checkTimeSheetExists(this.timesheetData)) {
+       alert('A time sheet with this name already exists. Please open that timesheet, or create a new one.');
+     } else {
+       this.timesheetService.addTimesheetToFirestore(this.timesheetData);
+       this.timesheetService.createRecordOnFirestore(this.timesheetData[`timesheetID`], {});
+       localStorage.setItem('activeSheet', this.timesheetData[`timesheetID`]);
+       this.router.navigate(['/home']).then();
+     }
   }
 
   checkTimeSheetExists(newSheet): any {
