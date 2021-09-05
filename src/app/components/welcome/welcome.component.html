@@ -12,10 +12,14 @@
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile *ngFor="let timesheetName of timesheetNames">
-      <mat-card fxFlex fxLayoutAlign="center center">
+      <mat-card fxFlex fxLayoutAlign="center center" *ngIf="timesheetName.timesheetID != 'timesheet_0'">
         <mat-card-content>
-          <a (click)="openTimeSheet('{{ timesheetName }}')" class="welcomeBox" matTooltip="OPEN">{{ timesheetName }}</a>
+          <a (click)="openTimeSheet('{{ timesheetName }}')" class="welcomeBox">{{ timesheetName.name }}</a>
         </mat-card-content>
+        <mat-card-actions>
+          <button (click)="openTimeSheet('{{ timesheetName }}')" mat-button color="primary">Open</button>
+          <button (click)="deleteTimeSheet('{{ timesheetName }}')" mat-button color="warn">Delete</button>
+        </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
