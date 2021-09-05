@@ -25,7 +25,7 @@ export class WednesdayComponent implements OnInit {
   constructor(private timesheetService: TimesheetService) { }
 
   ngOnInit(): void {
-    this.timesheetService.getUserTimesheets().subscribe(result => {
+    this.timesheetService.getTimeSheetRecords().subscribe(result => {
       for (let x = 0; x < result.length; x++) {
         if (result[x].day === 'Wednesday') {
           // tslint:disable-next-line:radix
