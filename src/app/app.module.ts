@@ -49,16 +49,21 @@ import { TuesdayComponent } from './components/weekdays/tuesday/tuesday.componen
 import { WednesdayComponent } from './components/weekdays/wednesday/wednesday.component';
 import { ThursdayComponent } from './components/weekdays/thursday/thursday.component';
 import { FridayComponent } from './components/weekdays/friday/friday.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { FullweekComponent } from './components/weekdays/fullweek/fullweek.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { EditTimesheetComponent } from './components/timesheet/edit-timesheet/edit-timesheet.component';
 import { DeleteTimesheetComponent } from './components/timesheet/delete-timesheet/delete-timesheet.component';
 import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
-import {MatSortModule} from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 import { RecordComponent } from './components/record/record.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { MatTimepickerModule } from 'mat-timepicker';
 
 @NgModule({
   declarations: [
@@ -83,7 +88,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     DeleteTimesheetComponent,
     CreateTimesheetComponent,
     RecordComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ProfileComponent,
   ],
     imports: [
         BrowserModule,
@@ -110,7 +116,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
         MatSelectModule,
         MatTooltipModule,
         MatSortModule,
-        MatGridListModule
+        MatGridListModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatTimepickerModule
     ],
   providers: [AuthService, TimesheetService, UIService, TransferService],
   bootstrap: [AppComponent]
