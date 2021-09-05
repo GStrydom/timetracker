@@ -22,7 +22,7 @@ export class TuesdayComponent implements OnInit {
   constructor(private timesheetService: TimesheetService) { }
 
   ngOnInit(): void {
-    this.timesheetService.getUserTimesheets().subscribe(result => {
+    this.timesheetService.getTimeSheetRecords().subscribe(result => {
       for (let x = 0; x < result.length; x++) {
         if (result[x].day === 'Tuesday') {
           this.daysTimesheet.push(result[x]);
