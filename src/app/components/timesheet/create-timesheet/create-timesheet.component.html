@@ -7,15 +7,21 @@
     <mat-card-content>
       <form (ngSubmit)="onSubmit(f)" #f="ngForm" fxFlex fxLayout="column">
         <mat-form-field>
-          <mat-label>Week Start</mat-label>
-          <input matInput placeholder="Enter the starting day of the week" type="text" ngModel name="startDate" id="startDate">
+          <mat-label>Timesheet Name</mat-label>
+          <input matInput ngModel type="text" name="tname" id="tname">
         </mat-form-field>
-
+        <mat-form-field>
+          <mat-label>Week Start</mat-label>
+          <input matInput placeholder="Enter the starting day of the week. EG: 03/09/21" [matDatepicker]="startPicker" ngModel name="startDate" id="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
         <mat-form-field>
           <mat-label>Week End</mat-label>
-          <input matInput placeholder="Enter the ending day of the week" type="text" ngModel name="endDate" id="endDate">
+          <input matInput [matDatepicker]="endPicker" placeholder="Enter the ending day of the week. EG: 09/09/21" type="text" ngModel name="endDate" id="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
         </mat-form-field>
-
         <button type="submit" mat-button color="primary" [disabled]="f.invalid">Create</button>
       </form>
     </mat-card-content>
