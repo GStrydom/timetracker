@@ -36,7 +36,7 @@ export class MondayComponent implements OnInit {
   constructor(private timesheetService: TimesheetService, private router: Router, private transferService: TransferService, private fs: AngularFirestore) { }
 
   async ngOnInit(): Promise<any> {
-    this.timesheetService.getUserTimesheets().subscribe(result => {
+    this.timesheetService.getTimeSheetRecords().subscribe(result => {
       if (result.length <= 0) {
         this.transferService.setData('true');
       }
