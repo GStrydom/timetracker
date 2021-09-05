@@ -8,25 +8,26 @@ import { TimesheetService } from '../timesheet/timesheet.service';
 })
 export class WelcomeComponent implements OnInit {
   timesheetNames = [];
-  activeTimesheet: string;
-  timesheets = [];
 
   constructor(private timesheetService: TimesheetService) { }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData(): any {
     this.timesheetService.getCollectionList().subscribe(result => {
-      for (let x = 0; x < result.length; x++) {
-        this.timesheetNames.push(result[x].name);
-      }
-      console.log(this.timesheetNames);
+      result.docs.forEach((doc) => {
+        this.timesheetNames.push(doc.data());
+      });
     });
   }
 
   openTimeSheet(timeSheetName): any {
-    this.timesheetService.getActiveTimesheet(timeSheetName).subscribe(result => {
-      for (let x = 0; x < result.length; x++) {
-        return '';
-      }
-    });
+    console.log('result');
+  }
+
+  deleteTimeSheet(timesheetName): any {
+    console.log('Deleted');
   }
 }
